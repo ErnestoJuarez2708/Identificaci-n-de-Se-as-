@@ -1,0 +1,106 @@
+{
+  "A": {
+    "image": "A.jpg",
+    "description": "La mano está cerrada en un puño, con el pulgar estirado hacia un lado apoyado sobre el costado de los dedos. La palma apunta hacia adelante o ligeramente hacia el lado."
+  },
+  "B": {
+    "image": "B.jpg",
+    "description": "Todos los dedos están extendidos y juntos, el pulgar está doblado sobre la palma. La palma mira hacia adelante, como una forma plana vertical."
+  },
+  "C": {
+    "image": "C.jpg",
+    "description": "La mano forma una 'C' visible, con los dedos curvados y el pulgar formando la parte inferior de la letra. La palma apunta hacia adelante."
+  },
+  "D": {
+    "image": "D.jpg",
+    "description": "El dedo índice está extendido hacia arriba, los otros dedos doblados tocando el pulgar formando un círculo. La palma mira hacia adelante."
+  },
+  "E": {
+    "image": "E.jpg",
+    "description": "Los dedos están curvados hacia la palma tocando las yemas con el pulgar, sin formar un puño cerrado. La palma apunta hacia adelante."
+  },
+  "F": {
+    "image": "F.jpg",
+    "description": "El pulgar y el índice se tocan formando un círculo, mientras los otros tres dedos están extendidos y separados. La palma apunta hacia adelante."
+  },
+  "G": {
+    "image": "G.jpg",
+    "description": "El dedo índice y el pulgar están extendidos horizontalmente, paralelos al suelo, los otros dedos doblados. La palma mira hacia el lado."
+  },
+  "H": {
+    "image": "H.jpg",
+    "description": "El índice y el dedo medio están extendidos juntos hacia un lado, los demás doblados. La palma apunta hacia el lado."
+  },
+  "I": {
+    "image": "I.jpg",
+    "description": "Solo el dedo meñique está extendido, los demás doblados en un puño. La palma apunta hacia adelante."
+  },
+  "J": {
+    "image": "J.jpg",
+    "description": "Comienza como la letra I y se traza una curva en el aire con el meñique, dibujando una 'J' hacia afuera."
+  },
+  "K": {
+    "image": "K.jpg",
+    "description": "El índice y el dedo medio están extendidos formando una V, el pulgar se coloca entre ellos. La palma apunta hacia adelante."
+  },
+  "L": {
+    "image": "L.jpg",
+    "description": "El dedo índice y el pulgar forman un ángulo recto (como una 'L'), los otros dedos doblados hacia la palma. La palma mira hacia adelante."
+  },
+  "M": {
+    "image": "M.jpg",
+    "description": "Los tres dedos del medio (índice, medio, anular) cruzan sobre el pulgar, el meñique queda libre. La palma mira hacia adelante."
+  },
+  "N": {
+    "image": "N.jpg",
+    "description": "Los dos dedos del medio (índice y medio) cruzan sobre el pulgar, los otros doblados. La palma apunta hacia adelante."
+  },
+  "O": {
+    "image": "O.jpg",
+    "description": "Los dedos y el pulgar se curvan formando una 'O' cerrada, con las yemas tocándose. La palma mira hacia adelante."
+  },
+  "P": {
+    "image": "P.jpg",
+    "description": "Similar a la letra K, pero con la palma apuntando hacia abajo y los dedos inclinados hacia el suelo."
+  },
+  "Q": {
+    "image": "Q.jpg",
+    "description": "Similar a la letra G, pero la palma apunta hacia abajo con el índice y pulgar extendidos."
+  },
+  "R": {
+    "image": "R.jpg",
+    "description": "El índice y el medio están cruzados uno sobre otro, los demás doblados. La palma mira hacia adelante."
+  },
+  "S": {
+    "image": "S.jpg",
+    "description": "La mano forma un puño cerrado con el pulgar sobre los dedos. La palma mira hacia adelante."
+  },
+  "T": {
+    "image": "T.jpg",
+    "description": "La mano forma un puño, con el pulgar pasando entre el índice y el medio. La palma mira hacia adelante."
+  },
+  "U": {
+    "image": "U.jpg",
+    "description": "El índice y el medio están extendidos y juntos, los demás doblados. La palma mira hacia adelante."
+  },
+  "V": {
+    "image": "V.jpg",
+    "description": "El índice y el medio están extendidos formando una 'V', los otros dedos doblados. La palma mira hacia adelante."
+  },
+  "W": {
+    "image": "W.jpg",
+    "description": "Los dedos índice, medio y anular están extendidos y separados, los otros doblados. La palma apunta hacia adelante."
+  },
+  "X": {
+    "image": "X.jpg",
+    "description": "El índice está curvado como un gancho, los otros dedos doblados en puño. La palma mira hacia adelante."
+  },
+  "Y": {
+    "image": "Y.jpg",
+    "description": "El pulgar y el meñique están extendidos, los otros doblados. La palma apunta hacia adelante."
+  },
+  "Z": {
+    "image": "Z.jpg",
+    "description": "El dedo índice traza una 'Z' en el aire, los demás doblados. La palma apunta hacia adelante."
+  }
+}
