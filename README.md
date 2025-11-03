@@ -1,100 +1,163 @@
 # 🧠 Proyecto de Reconocimiento de Lengua de Señas (ASL)
 
-Este proyecto implementa un sistema de **reconocimiento de señas del alfabeto en ASL (American Sign Language)** mediante un modelo de visión artificial en **Python** y una interfaz web desarrollada en **React + TypeScript + TailwindCSS**.
+Sistema de **reconocimiento de señas del alfabeto en ASL (American Sign Language)** mediante visión artificial con **Python** y una interfaz web en **React + TypeScript + TailwindCSS**.
 
 ---
 
 ## 📁 Estructura del Proyecto
-
+```
 📂 Proyecto-ASL/
 │
-├── frontend/
-│ └── asl_agent/ # Aplicación web (React + TS + Tailwind)
+├── 📂 frontend/
+│   └── 📂 asl_agent/          # Aplicación web (React + TS + Tailwind)
+│       ├── src/
+│       ├── package.json
+│       └── vite.config.ts
 │
-├── gold_dataset/ # Datos de referencia (para validación o ejemplos)
+├── 📂 gold_dataset/            # Datos de referencia y validación
 │
-├── api.py # API principal (servidor Flask / FastAPI)
-├── agent.py # Lógica del agente de predicción
-├── tools.py # Utilidades del modelo
-├── asl_model.h5 # Modelo entrenado (Keras / TensorFlow)
+├── 📄 api.py                   # API principal (Flask/FastAPI)
+├── 📄 agent.py                 # Lógica del agente de predicción
+├── 📄 tools.py                 # Utilidades del modelo
+├── 📄 asl_model.h5             # Modelo entrenado (Keras/TensorFlow)
 │
-├── pyproject.toml # Configuración del entorno uv
-├── uv.lock # Lockfile del entorno uv
-├── .gitignore
-├── .python-version
-└── README.md
+├── 📄 pyproject.toml           # Configuración de dependencias
+├── 📄 uv.lock                  # Lockfile del entorno
+├── 📄 .gitignore
+├── 📄 .python-version
+└── 📄 README.md
+```
 
 ---
 
 ## ⚙️ Requisitos Previos
 
-Asegúrate de tener instalados:
+| Herramienta | Versión Mínima | Instalación |
+|-------------|----------------|-------------|
+| **Python** | 3.10+ | [python.org](https://www.python.org/downloads/) |
+| **uv** | última | `pip install uv` |
+| **Node.js** | 18+ | [nodejs.org](https://nodejs.org/) |
+| **Git** | cualquiera | [git-scm.com](https://git-scm.com/) |
 
-- **Python 3.10+**
-- **uv** (gestor de entornos ultrarrápido)  
-  👉 Instálalo con:
-  ```bash
-  pip install uv
-Node.js 18+
+---
 
-Git
+## 🚀 Instalación y Ejecución
 
-Visual Studio Code (recomendado)
+### 1️⃣ Clonar el Repositorio
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd Proyecto-ASL
+```
 
-🐍 Configuración del Backend (API)
-Instalar dependencias con uv
+### 2️⃣ Configurar el Backend
 
-Desde la raíz del proyecto:
-
+#### Instalar dependencias
+```bash
 uv sync
+```
 
-Esto instalará automáticamente todas las dependencias definidas en pyproject.toml.
+> Esto instalará automáticamente todas las dependencias definidas en `pyproject.toml`.
 
-Ejecutar la API
-
+#### Ejecutar la API
+```bash
 uv run python api.py
+```
 
-Si la API inicia correctamente, verás algo como:
-
+✅ **Salida esperada:**
+```
 * Running on http://127.0.0.1:5000
+* Press CTRL+C to quit
+```
 
-⚠️ Deja esta terminal abierta, ya que el frontend se comunicará con este backend.
+⚠️ **Importante:** Deja esta terminal abierta mientras trabajas con el frontend.
 
-💻 Configuración del Frontend
-Moverte al directorio del frontend
+---
 
+### 3️⃣ Configurar el Frontend
+
+#### Navegar al directorio
+```bash
 cd frontend/asl_agent
+```
 
-Instalar dependencias
-
+#### Instalar dependencias
+```bash
 npm install
+```
 
-Levantar el entorno de desarrollo
+#### Configurar variables de entorno
 
-npm run dev
-Esto iniciará el servidor local, normalmente en:
-
-http://localhost:5173
-Verificar conexión con la API
-
-En el archivo de configuración del frontend (por ejemplo .env o src/config.ts), asegúrate de tener la URL correcta:
-
+Crea un archivo `.env` en `frontend/asl_agent/`:
+```env
 VITE_API_URL=http://127.0.0.1:5000
-🧠 Flujo del Sistema
+```
 
-El frontend captura o carga una imagen de una seña.
+#### Ejecutar el servidor de desarrollo
+```bash
+npm run dev
+```
 
-Envía la imagen a la API (api.py) mediante una petición HTTP.
+✅ **Salida esperada:**
+```
+VITE v5.x.x  ready in xxx ms
 
-La API usa el modelo (asl_model.h5) junto con utilidades en agent.py y tools.py para predecir la letra.
+➜  Local:   http://localhost:5173/
+➜  Network: use --host to expose
+```
 
-Devuelve un JSON con la predicción, la confianza y el feedback generado:
+---
 
-json
-Copiar código
+## 🔄 Flujo del Sistema
+```mermaid
+graph LR
+    A[Usuario captura/carga imagen] --> B[Frontend envía imagen]
+    B --> C[API recibe imagen]
+    C --> D[Modelo predice letra]
+    D --> E[API devuelve JSON]
+    E --> F[Frontend muestra resultado]
+```
+
+### Respuesta de la API
+```json
 {
   "pred_letter": "W",
   "confidence": 0.6975,
-  "feedback": "Asegúrate de extender el dedo anular..."
+  "feedback": "Asegúrate de extender el dedo anular más claramente. Los dedos índice, medio y anular deben estar bien separados..."
 }
-El frontend muestra estos datos de manera visual y ordenada.
+```
+
+---
+
+## 🛠️ Comandos Útiles
+
+### Backend
+
+| Comando | Descripción |
+|---------|-------------|
+| `uv sync` | Instalar/actualizar dependencias |
+| `uv run python api.py` | Ejecutar API |
+
+### Frontend
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm install` | Instalar dependencias |
+| `npm run dev` | Modo desarrollo |
+
+---
+
+## 📊 Componentes Principales
+
+### Backend
+
+- **`api.py`**: Servidor HTTP que expone endpoints REST
+- **`agent.py`**: Lógica de inferencia y procesamiento de predicciones
+- **`tools.py`**: Funciones auxiliares para preprocesamiento de imágenes
+- **`asl_model.h5`**: Modelo de red neuronal entrenado
+
+### Frontend
+
+- **React 18**: Framework de interfaz
+- **TypeScript**: Tipado estático
+- **TailwindCSS**: Estilos utilitarios
+- **Vite**: Build tool y dev server
