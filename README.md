@@ -1,111 +1,100 @@
-# Guía para Levantar Proyecto de Reconocimiento de Señales en VS Code
+# 🧠 Proyecto de Reconocimiento de Lengua de Señas (ASL)
 
-## Identificación de Señas
-
-### Requisitos previos
-
-- **Python 3.x:** Instalar Python (se recomienda Python 3.8 o superior). Por ejemplo, puede crearse un entorno virtual con:
-  ```bash
-  python -m venv venv
-  .\venv\Scripts\activate
-  ```
-
-- **Git:** Para clonar el repositorio (por ejemplo Git para Windows).
-
-- **Bibliotecas Python:** OpenCV (paquete `opencv-python`), NumPy (`numpy`), y otras según el proyecto (por ejemplo `mediapipe`, `matplotlib`, etc.). Se instalan fácilmente con `pip`, por ejemplo:
-  ```bash
-  pip install opencv-python
-  pip install numpy
-  ```
-
-- **Visual Studio Code (VSCode):** Editor de código en Windows (se recomienda Windows 10 o 11).
+Este proyecto implementa un sistema de **reconocimiento de señas del alfabeto en ASL (American Sign Language)** mediante un modelo de visión artificial en **Python** y una interfaz web desarrollada en **React + TypeScript + TailwindCSS**.
 
 ---
 
-### Extensiones recomendadas de VSCode
+## 📁 Estructura del Proyecto
 
-- **Python (Microsoft):** Extensión oficial para desarrollo en Python. Soporta IntelliSense, depuración y notebooks Jupyter. Instale la extensión **"Python"** de Microsoft (`ms-python.python`).
-- **Jupyter:** Si hay cuadernos (`.ipynb`), instale la extensión de Jupyter (`ms-toolsai.jupyter`) para ejecutarlos en VSCode.
-- **Pylance (opcional):** Motor de análisis de código Python.
-
----
-
-### Clonar el repositorio
-
-1. Abra VSCode o una terminal y ejecute:
-   ```bash
-   git clone https://github.com/ErnestoJuarez2708/Identificaci-n-de-Se-as-.git
-   ```
-
-2. Vaya a la carpeta clonada:
-   ```bash
-   cd Identificaci-n-de-Se-as-
-   ```
-
-3. Abra esta carpeta en VSCode (`File > Open Folder`) o con la terminal:
-   ```bash
-   code .
-   ```
+📂 Proyecto-ASL/
+│
+├── frontend/
+│ └── asl_agent/ # Aplicación web (React + TS + Tailwind)
+│
+├── gold_dataset/ # Datos de referencia (para validación o ejemplos)
+│
+├── api.py # API principal (servidor Flask / FastAPI)
+├── agent.py # Lógica del agente de predicción
+├── tools.py # Utilidades del modelo
+├── asl_model.h5 # Modelo entrenado (Keras / TensorFlow)
+│
+├── pyproject.toml # Configuración del entorno uv
+├── uv.lock # Lockfile del entorno uv
+├── .gitignore
+├── .python-version
+└── README.md
 
 ---
 
-### Instalar dependencias
+## ⚙️ Requisitos Previos
 
-- Si existe un archivo `requirements.txt`, instale todo con:
+Asegúrate de tener instalados:
+
+- **Python 3.10+**
+- **uv** (gestor de entornos ultrarrápido)  
+  👉 Instálalo con:
   ```bash
-  pip install -r requirements.txt
-  ```
+  pip install uv
+Node.js 18+
 
-- En caso contrario, instale manualmente las librerías necesarias:
-  ```bash
-  pip install --upgrade pip           # (actualiza pip)
-  pip install opencv-python numpy mediapipe matplotlib
-  ```
+Git
 
-(Opcional) Crear y activar un entorno virtual ayuda a aislar dependencias:
-```bash
-python -m venv venv
-.\venv\Scripts\activate
-```
+Visual Studio Code (recomendado)
 
----
+🐍 Configuración del Backend (API)
+Instalar dependencias con uv
 
-### Ejecutar el proyecto
+Desde la raíz del proyecto:
 
-- **Script principal:** Ubique el archivo Python principal (por ejemplo `main.py` o similar) y ejecútelo con Python:
-  ```bash
-  python main.py
-  ```
-  También puede presionar **F5** en VSCode para depuración.
+uv sync
 
-- **Cuadernos Jupyter:** Si hay archivos `.ipynb`, ábralos en VSCode usando la extensión Jupyter y ejecute las celdas interactivamente.
+Esto instalará automáticamente todas las dependencias definidas en pyproject.toml.
 
-- **Webcam/datos:** Algunos proyectos de señales usan la cámara; asegúrese de tenerla conectada si se requiere captura en tiempo real.
+Ejecutar la API
 
----
+uv run python api.py
 
-### Notas adicionales y problemas comunes
+Si la API inicia correctamente, verás algo como:
 
-- **Ambiente virtual:** Asegúrese de activar el entorno virtual cada vez (`.\venv\Scripts\activate`) y de que VSCode use ese intérprete de Python (seleccionándolo en la esquina inferior derecha).
+* Running on http://127.0.0.1:5000
 
-- **Errores con OpenCV (`cv2`):** Si al importar OpenCV ocurre un error `DLL load failed`, instale el **Visual C++ 2015 Redistributable** en Windows. En ediciones **Windows N/KN** puede ser necesario también el **Windows Media Feature Pack**.
+⚠️ Deja esta terminal abierta, ya que el frontend se comunicará con este backend.
 
-- **pip/Python:** Si la consola no reconoce `pip`, use:
-  ```bash
-  python -m pip install <paquete>
-  ```
-  También se recomienda tener pip actualizado:
-  ```bash
-  pip install --upgrade pip
-  ```
+💻 Configuración del Frontend
+Moverte al directorio del frontend
 
-- **Otros errores comunes:** Verifique que las versiones de Python y librerías sean compatibles con el código. Revise mensajes de error en la terminal; errores como “module not found” indican librerías faltantes, que deben instalarse con `pip`.
+cd frontend/asl_agent
 
----
+Instalar dependencias
 
-### Referencias
+npm install
 
-- Instalación de OpenCV: `pip install opencv-python`
-- Instalación de NumPy: `pip install numpy`
-- Extensión Python de VSCode: soporte para Jupyter y depuración.
-- Instalación de Visual C++ Redistributable en Windows para compatibilidad con OpenCV.
+Levantar el entorno de desarrollo
+
+npm run dev
+Esto iniciará el servidor local, normalmente en:
+
+http://localhost:5173
+Verificar conexión con la API
+
+En el archivo de configuración del frontend (por ejemplo .env o src/config.ts), asegúrate de tener la URL correcta:
+
+VITE_API_URL=http://127.0.0.1:5000
+🧠 Flujo del Sistema
+
+El frontend captura o carga una imagen de una seña.
+
+Envía la imagen a la API (api.py) mediante una petición HTTP.
+
+La API usa el modelo (asl_model.h5) junto con utilidades en agent.py y tools.py para predecir la letra.
+
+Devuelve un JSON con la predicción, la confianza y el feedback generado:
+
+json
+Copiar código
+{
+  "pred_letter": "W",
+  "confidence": 0.6975,
+  "feedback": "Asegúrate de extender el dedo anular..."
+}
+El frontend muestra estos datos de manera visual y ordenada.
