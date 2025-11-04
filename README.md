@@ -51,6 +51,17 @@ cd Proyecto-ASL
 
 ### 2️⃣ Configurar el Backend
 
+#### Crear un ambiente
+```bash
+uv venv
+```
+> Poner la opción "Y" o "Yes" para crear el ambiente.
+
+#### Activar el ambiente
+```bash
+.venv\Scripts\activate
+```
+
 #### Instalar dependencias
 ```bash
 uv sync
@@ -60,12 +71,12 @@ uv sync
 
 #### Ejecutar la API
 ```bash
-uv run python api.py
+fastapi dev run api.py
 ```
 
 ✅ **Salida esperada:**
 ```
-* Running on http://127.0.0.1:5000
+* Running on http://127.0.0.1:8000
 * Press CTRL+C to quit
 ```
 
