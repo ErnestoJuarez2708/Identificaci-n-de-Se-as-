@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import axios from "axios";
 import type { ASLResponse } from "../services/aslService";
 import { sendHandImage } from "../services/aslService";
 
@@ -64,7 +65,12 @@ const Chat: React.FC = () => {
       setResult(data);
     } catch (err) {
       console.error(err);
-      alert("Error enviando imagen al backend");
+      const errorMessage = axios.isAxiosError<{ error?: string; detail?: string }>(err)
+        ? err.response?.data?.error ?? err.response?.data?.detail ?? err.message
+        : err instanceof Error
+          ? err.message
+          : "Error desconocido";
+      alert(`Error enviando imagen al backend: ${errorMessage}`);
     } finally {
       setLoading(false);
       stopCamera();
