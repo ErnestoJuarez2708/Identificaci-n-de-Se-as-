@@ -1,7 +1,10 @@
-import dspy
-from tools import get_gold_info
 import base64
+import os
+
 import cv2
+import dspy
+
+from tools import get_gold_info
 
 dllm = dspy.LM(model="openai/gpt-4o-mini", max_tokens=4000)
 
@@ -23,6 +26,13 @@ def analyze_hand(pred_letter, confidence, user_img, gold_letter):
     gold_img_path, gold_description = get_gold_info(gold_letter)
     if gold_img_path is None:
         return "No se encontró información del gold dataset para esa letra."
+
+    if not os.getenv("OPENAI_API_KEY"):
+        return (
+            f"Predicción: {pred_letter} ({confidence:.0%} de confianza). "
+            "La retroalimentación detallada con IA no está disponible porque "
+            "falta configurar OPENAI_API_KEY."
+        )
 
     user_b64 = image_to_base64(user_img)
 
